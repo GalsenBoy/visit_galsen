@@ -23,4 +23,13 @@ export const Colors = {
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
   },
+  custumColors: {
+    vertDoux: '#4CAF50', // boutons positifs, éléments actifs   
+    jauneSable: '#FDD835', // highlights, icônes, fond de section 
+    rougeTerre: '#E53935',  //actions importantes, alertes        
+    crèmeClair: '#FAF3E0', //fond général, cartes                
+    vertClair: '#A5D6A7',//hover ou éléments secondaires       
+    rougeRosé: '#FFCDD2',//fonds doux avec le rouge            
+    grisClair: '#6b7280', // fonds de carte, arrière-plan doux
+  }
 };
