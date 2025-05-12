@@ -1,0 +1,14 @@
+{
+    "home": {
+        "hello": "Salut,",
+        "description": "Explorez facilement les merveilles du pays de la Teranga",
+        "all": "Tous",
+        "restaurants": "Restaurants",
+        "hotels": "Hôtels",
+        "beaches": "Plages",
+        "culture": "Culture",
+        "leisure": "Loisirs",
+        "our recommendations": "Nos recommandations",
+        "search destination": "Rechercher une destination..."
+    }
+}
