@@ -1,43 +1,106 @@
 import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
+import { Colors } from "@/constants/Colors";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { router } from "expo-router";
+import { useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+} from "react-native";
 
-export default function DestinationCard() {
+type DestinationCardProps = {
+  title: string;
+  image: any; // Image source
+  region: string;
+};
+
+export default function DestinationCard({
+  title,
+  image,
+  region,
+}: DestinationCardProps) {
+  const theme =
+    useColorScheme() === "light"
+      ? { backgroundColor: Colors.custumColors.cardWhite }
+      : { backgroundColor: Colors.custumColors.cardBlack };
+  const [isFavorite, setIsFavorite] = useState(false);
   return (
-    <ThemedView>
-      <TouchableOpacity>
-        <Image
-          source={require("@/assets/images/plage.jpg")}
-          style={styles.image}
-        />
-        <ThemedText type="presubtitle" style={styles.place}>
-          Réserve de Bandia
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => router.push("/DestinationDetails")}
+        style={[styles.card, theme]}
+      >
+        <View>
+          <Image source={image} style={styles.image} />
+          <TouchableOpacity
+            onPress={(event) => {
+              event.stopPropagation();
+              setIsFavorite(!isFavorite);
+              // Ajoutez ici la logique pour gérer le clic sur l'icône de cœur
+            }}
+            style={GlobalStyle.heartIcon as any}
+          >
+            <Ionicons
+              name={isFavorite ? "heart" : "heart-outline"}
+              size={20}
+              color={Colors.custumColors.rougeTerre}
+            />
+          </TouchableOpacity>
+        </View>
+        <ThemedText type="defaultSemiBold" style={styles.place}>
+          {title}
         </ThemedText>
-        <ThemedView style={styles.lieu}>
-          <Ionicons name="location-outline" size={24} color="gray" />
-          <ThemedText>Thiès</ThemedText>
-        </ThemedView>
+        <View style={styles.lieu}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Ionicons
+              name="location-outline"
+              size={16}
+              color={Colors.custumColors.vertClair}
+            />
+            <Text style={styles.region}>{region}</Text>
+          </View>
+          <Text style={{ color: Colors.custumColors.grisClair }}>
+            17.000fr / pers
+          </Text>
+        </View>
       </TouchableOpacity>
-    </ThemedView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+
+  card: {
+    width: 250,
+    height: 250,
+    borderRadius: GlobalStyle.borderRadius,
+    padding: 10,
+  },
   image: {
-    width: 200,
+    width: "100%",
     resizeMode: "cover",
     height: 150,
-    borderRadius: GlobalStyle.borderRadius,
+    borderRadius: 14,
   },
   place: {
-    lineHeight: 15,
-    padding: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   lieu: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
+    justifyContent: "space-between",
+    paddingHorizontal: 8,
+  },
+  region: {
+    color: Colors.custumColors.vertClair,
   },
 });

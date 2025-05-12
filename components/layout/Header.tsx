@@ -1,5 +1,7 @@
+import { Colors } from "@/constants/Colors";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Image, StyleSheet, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "../ThemedText";
@@ -14,7 +16,16 @@ export default function Header() {
       />
       <View style={styles.overlay}>
         <SafeAreaView style={styles.textContainer}>
-          <ThemedText type="presubtitle">Dakar, Sénégal</ThemedText>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+            <Ionicons
+              name="location-outline"
+              size={16}
+              color={Colors.custumColors.vertClair}
+            />
+            <ThemedText style={styles.pays} type="presubtitle">
+              Dakar, Sénégal
+            </ThemedText>
+          </View>
           <ThemedText type="subtitle" style={{ lineHeight: 30 }}>
             Explorez le Sénégal, terre de couleurs et d’hospitalité.
           </ThemedText>
@@ -26,6 +37,7 @@ export default function Header() {
               color="gray"
             />
             <TextInput
+              placeholder="Rechercher une destination..."
               style={styles.input}
               underlineColorAndroid="transparent"
             />
@@ -73,5 +85,8 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 0,
+  },
+  pays: {
+    color: Colors.custumColors.vertClair,
   },
 });

@@ -31,5 +31,7 @@ export const Colors = {
     vertClair: '#A5D6A7',//hover ou éléments secondaires       
     rougeRosé: '#FFCDD2',//fonds doux avec le rouge            
     grisClair: '#6b7280', // fonds de carte, arrière-plan doux
+    cardBlack: "#0E0E0E",
+    cardWhite: "#F5F5F5",
   }
 };
