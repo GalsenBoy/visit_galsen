@@ -2,7 +2,7 @@ import { Colors } from "@/constants/Colors";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Image, StyleSheet, TextInput, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "../ThemedText";
 import { ThemedView } from "../ThemedView";
@@ -26,9 +26,9 @@ export default function Header() {
               Dakar, Sénégal
             </ThemedText>
           </View>
-          <ThemedText type="subtitle" style={{ lineHeight: 30 }}>
+          <Text style={styles.description}>
             Explorez le Sénégal, terre de couleurs et d’hospitalité.
-          </ThemedText>
+          </Text>
           <ThemedView style={styles.searchSection}>
             <AntDesign
               style={styles.searchIcon}
@@ -69,8 +69,16 @@ const styles = StyleSheet.create({
     right: 20,
     gap: 20,
   },
+  description: {
+    color: Colors.dark.text,
+    fontSize: 20,
+    lineHeight: 30,
+    marginBottom: 20,
+    fontWeight: "600",
+  },
   searchSection: {
     flex: 1,
+    backgroundColor: Colors.dark.background,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -81,6 +89,8 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    color: Colors.custumColors.grisClair,
+    fontWeight: "600",
     paddingTop: 10,
     paddingRight: 10,
     paddingBottom: 10,

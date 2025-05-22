@@ -15,6 +15,13 @@ export const GlobalStyle = {
         shadowColor: "#C0B8B0",
 
     },
+    button: {
+        backgroundColor: Colors.custumColors.jauneSable,
+        padding: 15,
+        borderRadius: 12,
+        alignItems: "center",
+        marginTop: 20,
+    },
     heartIcon: {
         position: "absolute",
         top: 10,

@@ -59,7 +59,10 @@ export default function OtherDestinantionCard() {
                 Réserve de Bandia
               </ThemedText>
               <ThemedText
-                style={{ color: Colors.custumColors.grisClair }}
+                style={{
+                  color: Colors.custumColors.grisClair,
+                  fontWeight: "600",
+                }}
                 numberOfLines={2}
                 ellipsizeMode="tail"
               >

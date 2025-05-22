@@ -64,7 +64,9 @@ export default function DestinationCard({
             />
             <Text style={styles.region}>{region}</Text>
           </View>
-          <Text style={{ color: Colors.custumColors.grisClair }}>
+          <Text
+            style={{ color: Colors.custumColors.grisClair, fontWeight: "600" }}
+          >
             17.000fr / pers
           </Text>
         </View>
