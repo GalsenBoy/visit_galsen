@@ -32,7 +32,13 @@ export default function DestinationCard({
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => router.push("/DestinationDetails")}
+        onPress={() =>
+          router.push({
+            pathname: "/DestinationDetails",
+            params: { title, image, region },
+          })
+        }
+        // activeOpacity={0.8}
         style={[styles.card, theme]}
       >
         <View>
@@ -52,22 +58,30 @@ export default function DestinationCard({
             />
           </TouchableOpacity>
         </View>
-        <ThemedText type="defaultSemiBold" style={styles.place}>
+        <ThemedText type="smallText" style={styles.place}>
           {title}
         </ThemedText>
         <View style={styles.lieu}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
             <Ionicons
               name="location-outline"
-              size={16}
+              size={14}
               color={Colors.custumColors.vertClair}
             />
-            <Text style={styles.region}>{region}</Text>
+            <ThemedText style={styles.region}>{region}</ThemedText>
           </View>
           <Text
-            style={{ color: Colors.custumColors.grisClair, fontWeight: "600" }}
+            style={{
+              color: Colors.custumColors.grisClair,
+              fontWeight: "600",
+            }}
           >
-            17.000fr / pers
+            17.000fr
           </Text>
         </View>
       </TouchableOpacity>
@@ -81,7 +95,7 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    width: 250,
+    width: 200,
     height: 250,
     borderRadius: GlobalStyle.borderRadius,
     padding: 10,
@@ -95,6 +109,8 @@ const styles = StyleSheet.create({
   place: {
     paddingVertical: 5,
     paddingHorizontal: 10,
+    fontWeight: "bold",
+    lineHeight: 20,
   },
   lieu: {
     flexDirection: "row",
@@ -104,5 +120,6 @@ const styles = StyleSheet.create({
   },
   region: {
     color: Colors.custumColors.vertClair,
+    fontSize: 14,
   },
 });
