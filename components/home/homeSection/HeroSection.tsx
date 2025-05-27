@@ -23,7 +23,7 @@ export default function HeroSection() {
     },
     {
       id: 4,
-      title: "Parc National Niokolo-Koba",
+      title: "Parc Niokolo-Koba",
       image: require("@/assets/images/plage.jpg"),
       region: "Kédougou",
     },

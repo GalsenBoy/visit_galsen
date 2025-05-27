@@ -18,7 +18,18 @@ export default function OtherDestinantionCard() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => router.push("/DestinationDetails")}>
+      <TouchableOpacity
+        onPress={() =>
+          router.push({
+            pathname: "/DestinationDetails",
+            params: {
+              title: "Réserve de Bandia",
+              image: require("@/assets/images/plage.jpg"),
+              region: "Thiès",
+            },
+          })
+        }
+      >
         <View
           style={[
             styles.card,
@@ -66,7 +77,7 @@ export default function OtherDestinantionCard() {
                 numberOfLines={2}
                 ellipsizeMode="tail"
               >
-                50.000fr / pers
+                50.000fr
               </ThemedText>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
