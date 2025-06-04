@@ -8,6 +8,8 @@ import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import {
   FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   ScrollView,
   StyleSheet,
   Text,
@@ -33,7 +35,7 @@ export default function DestinationDetails() {
   const [str, setStr] = useState(
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia nihil totam iusto exercitationem culpa id asperiores nesciunt tenetur modi suscipit? Perferendis, perspiciatis alias vel fugit quas debitis tempore mollitia neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis quia totam vero ea eos nemo praesentium sed qui harum nulla iusto, repellendus illo, doloremque quae natus numquam quisquam ratione dicta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, molestias. Distinctio numquam delectus expedita, eius fuga enim. Animi natus dolores quas, neque quisquam voluptatibus est, beatae tempora, quo corrupti doloremque? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi eaque, totam, odit officiis, nostrum officia sed a error necessitatibus cumque voluptate doloribus soluta sit recusandae deleniti id aliquam eius est."
   );
-  const onScroll = (event) => {
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const slideSize = event.nativeEvent.layoutMeasurement.width;
     const contentOffset = event.nativeEvent.contentOffset.x;
     // Calcule l'index de la slide visible
