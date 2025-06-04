@@ -1,7 +1,8 @@
+import HeartIcon from "@/components/HeartIcon";
+import LocationIcon from "@/components/LocationIcon";
 import { ThemedText } from "@/components/ThemedText";
 import { Colors } from "@/constants/Colors";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
@@ -21,7 +22,7 @@ export default function OtherDestinantionCard() {
       <TouchableOpacity
         onPress={() =>
           router.push({
-            pathname: "/destinantionDetails/[id]",
+            pathname: "/destinantion/[id]",
             params: {
               id: "1",
             },
@@ -31,6 +32,7 @@ export default function OtherDestinantionCard() {
         <View
           style={[
             styles.card,
+            GlobalStyle.alignRow as any,
             theme === "light" ? GlobalStyle.shadow : GlobalStyle.darkShadow,
             { height: 160 },
             {
@@ -46,20 +48,10 @@ export default function OtherDestinantionCard() {
               source={require("@/assets/images/plage.jpg")}
               style={styles.image}
             />
-            <TouchableOpacity
-              onPress={(event) => {
-                event.stopPropagation();
-                setIsFavorite(!isFavorite);
-                // Ajoutez ici la logique pour gérer le clic sur l'icône de cœur
-              }}
-              style={GlobalStyle.heartIcon as any}
-            >
-              <Ionicons
-                name={isFavorite ? "heart" : "heart-outline"}
-                size={20}
-                color={Colors.custumColors.rougeTerre}
-              />
-            </TouchableOpacity>
+            <HeartIcon
+              isFavorite={isFavorite}
+              onPress={() => setIsFavorite(!isFavorite)}
+            />
           </View>
 
           <View style={styles.titles}>
@@ -67,23 +59,12 @@ export default function OtherDestinantionCard() {
               <ThemedText type="defaultSemiBold" style={{ marginBottom: 5 }}>
                 Réserve de Bandia
               </ThemedText>
-              <ThemedText
-                type="smallText"
-                style={{
-                  color: Colors.custumColors.grisClair,
-                  fontWeight: "bold",
-                }}
-                ellipsizeMode="tail"
-              >
+              <ThemedText type="smallText" style={styles.price}>
                 50.000fr
               </ThemedText>
             </View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Ionicons
-                name="location-outline"
-                size={14}
-                color={Colors.custumColors.vertClair}
-              />
+            <View style={GlobalStyle.alignRow as any}>
+              <LocationIcon />
               <ThemedText type="smallText" style={styles.region}>
                 Thiès
               </ThemedText>
@@ -102,10 +83,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
-
+  price: {
+    color: Colors.custumColors.grisClair,
+    fontWeight: "bold",
+  },
   card: {
-    flexDirection: "row",
-    alignItems: "center",
     gap: 24,
     paddingHorizontal: 10,
     marginVertical: 10,

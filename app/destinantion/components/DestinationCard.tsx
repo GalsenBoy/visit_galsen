@@ -1,7 +1,9 @@
+import HeartIcon from "@/components/HeartIcon";
+import LocationIcon from "@/components/LocationIcon";
 import { ThemedText } from "@/components/ThemedText";
 import { Colors } from "@/constants/Colors";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { DestinationCardProps } from "@/types/DestinantionCardProps";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
@@ -13,18 +15,12 @@ import {
   View,
 } from "react-native";
 
-type DestinationCardProps = {
-  id: string;
-  title: string;
-  image: any; // Image source
-  region: string;
-};
-
 export default function DestinationCard({
   title,
   image,
   region,
   id,
+  price,
 }: DestinationCardProps) {
   const theme =
     useColorScheme() === "light"
@@ -36,7 +32,7 @@ export default function DestinationCard({
       <TouchableOpacity
         onPress={() =>
           router.push({
-            pathname: "/destinantionDetails/[id]",
+            pathname: "/destinantion/[id]",
             params: { id: id },
           })
         }
@@ -45,45 +41,20 @@ export default function DestinationCard({
       >
         <View>
           <Image source={image} style={styles.image} />
-          <TouchableOpacity
-            onPress={(event) => {
-              event.stopPropagation();
-              setIsFavorite(!isFavorite);
-            }}
-            style={GlobalStyle.heartIcon as any}
-          >
-            <Ionicons
-              name={isFavorite ? "heart" : "heart-outline"}
-              size={20}
-              color={Colors.custumColors.rougeTerre}
-            />
-          </TouchableOpacity>
+          <HeartIcon
+            isFavorite={isFavorite}
+            onPress={() => setIsFavorite(!isFavorite)}
+          />
         </View>
         <ThemedText type="smallText" style={styles.place}>
           {title}
         </ThemedText>
-        <View style={styles.lieu}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Ionicons
-              name="location-outline"
-              size={14}
-              color={Colors.custumColors.vertClair}
-            />
+        <View style={[styles.lieu, GlobalStyle.alignRow as any]}>
+          <View style={GlobalStyle.alignRow as any}>
+            <LocationIcon />
             <ThemedText style={styles.region}>{region}</ThemedText>
           </View>
-          <Text
-            style={{
-              color: Colors.custumColors.grisClair,
-              fontWeight: "600",
-            }}
-          >
-            17.000fr
-          </Text>
+          <Text style={styles.price}>{price}</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -94,7 +65,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
   },
-
   card: {
     width: 200,
     height: 250,
@@ -114,13 +84,15 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   lieu: {
-    flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 8,
   },
   region: {
     color: Colors.custumColors.vertClair,
     fontSize: 14,
+  },
+  price: {
+    color: Colors.custumColors.grisClair,
+    fontWeight: "600",
   },
 });
