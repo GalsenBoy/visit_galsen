@@ -1,4 +1,5 @@
 import { Colors } from "@/constants/Colors";
+import { filterData } from "@/constants/filterData";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
 import { useState } from "react";
 import {
@@ -8,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { filterData } from "./filterData";
 
 export default function FilterCategory() {
   const [activeCategory, setActiveCategory] = useState<string | null>("Tous");
@@ -48,7 +48,6 @@ export default function FilterCategory() {
         renderItem={({ item }) => {
           return <FilterCategoriesUi category={item.name} />;
         }}
-        // estimatedItemSize={73}
         data={filterData}
       />
     </View>

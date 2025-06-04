@@ -34,4 +34,8 @@ export const GlobalStyle = {
         shadowColor: "#212121",
         ...shadow,
     },
+    alignRow: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
 }
