@@ -21,11 +21,9 @@ export default function OtherDestinantionCard() {
       <TouchableOpacity
         onPress={() =>
           router.push({
-            pathname: "/DestinationDetails",
+            pathname: "/destinantionDetails/[id]",
             params: {
-              title: "Réserve de Bandia",
-              image: require("@/assets/images/plage.jpg"),
-              region: "Thiès",
+              id: "1",
             },
           })
         }
@@ -66,15 +64,15 @@ export default function OtherDestinantionCard() {
 
           <View style={styles.titles}>
             <View>
-              <ThemedText type="presubtitle" style={{ marginBottom: 5 }}>
+              <ThemedText type="defaultSemiBold" style={{ marginBottom: 5 }}>
                 Réserve de Bandia
               </ThemedText>
               <ThemedText
+                type="smallText"
                 style={{
                   color: Colors.custumColors.grisClair,
-                  fontWeight: "600",
+                  fontWeight: "bold",
                 }}
-                numberOfLines={2}
                 ellipsizeMode="tail"
               >
                 50.000fr
@@ -83,10 +81,12 @@ export default function OtherDestinantionCard() {
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Ionicons
                 name="location-outline"
-                size={16}
+                size={14}
                 color={Colors.custumColors.vertClair}
               />
-              <ThemedText style={styles.region}>Thiès</ThemedText>
+              <ThemedText type="smallText" style={styles.region}>
+                Thiès
+              </ThemedText>
             </View>
           </View>
         </View>

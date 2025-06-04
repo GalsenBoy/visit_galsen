@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 type DestinationCardProps = {
+  id: string;
   title: string;
   image: any; // Image source
   region: string;
@@ -23,6 +24,7 @@ export default function DestinationCard({
   title,
   image,
   region,
+  id,
 }: DestinationCardProps) {
   const theme =
     useColorScheme() === "light"
@@ -34,8 +36,8 @@ export default function DestinationCard({
       <TouchableOpacity
         onPress={() =>
           router.push({
-            pathname: "/DestinationDetails",
-            params: { title, image, region },
+            pathname: "/destinantionDetails/[id]",
+            params: { id: id },
           })
         }
         // activeOpacity={0.8}
@@ -47,7 +49,6 @@ export default function DestinationCard({
             onPress={(event) => {
               event.stopPropagation();
               setIsFavorite(!isFavorite);
-              // Ajoutez ici la logique pour gérer le clic sur l'icône de cœur
             }}
             style={GlobalStyle.heartIcon as any}
           >

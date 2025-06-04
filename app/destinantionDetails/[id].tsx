@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import { Colors } from "@/constants/Colors";
+import { dataSection } from "@/constants/dataSection";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useLocalSearchParams } from "expo-router";
@@ -25,7 +26,9 @@ export default function DestinationDetails() {
     { id: "2", uri: require("@/assets/images/logo.png") },
     { id: "3", uri: require("@/assets/images/icon.png") },
   ];
-  const { title, image, region } = useLocalSearchParams();
+  const { id } = useLocalSearchParams();
+
+  const data = dataSection.find((item) => item.id === id);
 
   const [str, setStr] = useState(
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia nihil totam iusto exercitationem culpa id asperiores nesciunt tenetur modi suscipit? Perferendis, perspiciatis alias vel fugit quas debitis tempore mollitia neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis quia totam vero ea eos nemo praesentium sed qui harum nulla iusto, repellendus illo, doloremque quae natus numquam quisquam ratione dicta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, molestias. Distinctio numquam delectus expedita, eius fuga enim. Animi natus dolores quas, neque quisquam voluptatibus est, beatae tempora, quo corrupti doloremque? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi eaque, totam, odit officiis, nostrum officia sed a error necessitatibus cumque voluptate doloribus soluta sit recusandae deleniti id aliquam eius est."
@@ -85,7 +88,7 @@ export default function DestinationDetails() {
         </View>
         <View style={{ paddingHorizontal: GlobalStyle.padding }}>
           <ThemedText type="subtitle" style={styles.place}>
-            Réserve de Bandia
+            {data?.title}
           </ThemedText>
           <View style={styles.lieu}>
             <View style={styles.alignRow}>
@@ -95,7 +98,7 @@ export default function DestinationDetails() {
                 color={Colors.custumColors.vertClair}
               />
               <ThemedText style={{ color: Colors.custumColors.vertClair }}>
-                Saly
+                {data?.region}
               </ThemedText>
             </View>
             <Text
@@ -105,7 +108,7 @@ export default function DestinationDetails() {
                 fontWeight: "600",
               }}
             >
-              17.000fr / pers
+              {data?.price} / pers
             </Text>
           </View>
           <View style={styles.alignRow}>
