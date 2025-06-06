@@ -36,10 +36,11 @@ export default function DestinationCard({
       image: image,
       region: region,
       price: price,
+      // isFavorite: !isFavorite,
     };
     try {
       const jsonValue = JSON.stringify(cardValue);
-      await AsyncStorage.setItem("id", jsonValue);
+      await AsyncStorage.setItem("favorites", jsonValue);
     } catch (e) {
       console.error("Error saving to AsyncStorage:", e);
     }
