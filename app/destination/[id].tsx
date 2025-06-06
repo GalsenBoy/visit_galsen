@@ -1,7 +1,7 @@
+import { dataSection } from "@/app/destination/constants/dataSection";
 import LocationIcon from "@/components/LocationIcon";
 import { ThemedText } from "@/components/ThemedText";
 import { Colors } from "@/constants/Colors";
-import { dataSection } from "@/constants/dataSection";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useLocalSearchParams } from "expo-router";

@@ -1,4 +1,4 @@
-import { dataSection } from "@/constants/dataSection";
+import { dataSection } from "@/app/destination/constants/dataSection";
 import { FlatList, View } from "react-native";
 import DestinationCard from "./DestinationCard";
 

@@ -22,7 +22,7 @@ export default function OtherDestinantionCard() {
       <TouchableOpacity
         onPress={() =>
           router.push({
-            pathname: "/destinantion/[id]",
+            pathname: "/destination/[id]",
             params: {
               id: "1",
             },
