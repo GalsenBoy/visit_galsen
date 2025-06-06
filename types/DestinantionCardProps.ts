@@ -1,7 +1,9 @@
+import { ImageSourcePropType } from "react-native";
+
 export type DestinationCardProps = {
     id: string;
     title: string;
-    image: any;
+    image: ImageSourcePropType;
     region: string;
     price?: string;
 };

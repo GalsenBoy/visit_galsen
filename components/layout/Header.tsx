@@ -1,9 +1,9 @@
 import { Colors } from "@/constants/Colors";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import LocationIcon from "../LocationIcon";
 import { ThemedText } from "../ThemedText";
 import { ThemedView } from "../ThemedView";
 export default function Header() {
@@ -17,11 +17,7 @@ export default function Header() {
       <View style={styles.overlay}>
         <SafeAreaView style={styles.textContainer}>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
-            <Ionicons
-              name="location-outline"
-              size={16}
-              color={Colors.custumColors.vertClair}
-            />
+            <LocationIcon size={16} />
             <ThemedText style={styles.pays} type="presubtitle">
               Dakar, Sénégal
             </ThemedText>

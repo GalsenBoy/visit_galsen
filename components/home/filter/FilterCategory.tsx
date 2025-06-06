@@ -1,5 +1,5 @@
+import { filterData } from "@/components/home/filter/constants/filterData";
 import { Colors } from "@/constants/Colors";
-import { filterData } from "@/constants/filterData";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
 import { useState } from "react";
 import {

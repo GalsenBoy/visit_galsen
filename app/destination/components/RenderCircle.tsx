@@ -1,7 +1,15 @@
 import { GlobalStyle } from "@/constants/GlobaleStyle";
-import { View } from "react-native";
+import { ImageSourcePropType, View } from "react-native";
 
-export default function RenderCircle({ images, currentIndex }) {
+type RenderCircleProps = {
+  images: ImageSourcePropType[]; // Assuming images is an array of image URLs or paths
+  currentIndex: number; // The index of the currently active image
+};
+
+export default function RenderCircle({
+  images,
+  currentIndex,
+}: RenderCircleProps) {
   return (
     <View style={[styles.dotContainer, GlobalStyle.alignRow as any]}>
       {images.map((_, index) => (
