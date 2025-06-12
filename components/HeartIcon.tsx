@@ -6,14 +6,16 @@ import { TouchableOpacity } from "react-native";
 export default function HeartIcon({
   isFavorite,
   onPress,
+  style,
   size = 20,
 }: {
   isFavorite: boolean;
   onPress: () => void;
   size?: number;
+  style?: object;
 }) {
   return (
-    <TouchableOpacity onPress={onPress} style={GlobalStyle.heartIcon as any}>
+    <TouchableOpacity onPress={onPress} style={[GlobalStyle.heartIcon, style]}>
       <Ionicons
         name={isFavorite ? "heart" : "heart-outline"}
         size={size}

@@ -3,10 +3,9 @@ import LocationIcon from "@/components/LocationIcon";
 import { ThemedText } from "@/components/ThemedText";
 import { Colors } from "@/constants/Colors";
 import { GlobalStyle } from "@/constants/GlobaleStyle";
+import { useFavoritesStore } from "@/store/favoritesStore";
 import { DestinationCardProps } from "@/types/DestinantionCardProps";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
-import { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -27,39 +26,19 @@ export default function DestinationCard({
     useColorScheme() === "light"
       ? { backgroundColor: Colors.custumColors.cardWhite }
       : { backgroundColor: Colors.custumColors.cardBlack };
-  const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleAddToFavorites = async () => {
-    const cardValue = {
-      id: id,
-      title: title,
-      image: image,
-      region: region,
-      price: price,
-      // isFavorite: !isFavorite,
-    };
-    try {
-      const jsonValue = JSON.stringify(cardValue);
-      await AsyncStorage.setItem("favorites", jsonValue);
-    } catch (e) {
-      console.error("Error saving to AsyncStorage:", e);
-    }
+  const isFavorite = useFavoritesStore((state) => state.isFavorite(id));
+  const addFavorite = useFavoritesStore((state) => state.addFavorite);
+  const removeFavorite = useFavoritesStore((state) => state.removeFavorite);
 
+  const toggleFavorite = () => {
     if (isFavorite) {
-      const favorites = JSON.parse(
-        (await AsyncStorage.getItem("favorites")) || "[]"
-      );
-      const updatedFavorites = favorites.filter((item: any) => item.id !== id);
-      await AsyncStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      removeFavorite(id);
     } else {
-      const favorites = JSON.parse(
-        (await AsyncStorage.getItem("favorites")) || "[]"
-      );
-      favorites.push(cardValue);
-      await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
+      addFavorite({ id, title, image, region, price });
     }
-    setIsFavorite(!isFavorite);
   };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -74,10 +53,7 @@ export default function DestinationCard({
       >
         <View>
           <Image source={image} style={styles.image} />
-          <HeartIcon
-            isFavorite={isFavorite}
-            onPress={() => handleAddToFavorites()}
-          />
+          <HeartIcon isFavorite={isFavorite} onPress={() => toggleFavorite()} />
         </View>
         <ThemedText type="smallText" style={styles.place}>
           {title}
